@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\contrib\graphbuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\contrib\graphbuilderadapter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\binary.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\convert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\depthguard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\directives.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\emit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\emitfromevents.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\emitter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\emitterstate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\emitterutils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\exceptions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\exp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\node.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\node_data.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\nodebuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\nodeevents.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\null.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\ostream_wrapper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\parse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\parser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\regex_yaml.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\scanner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\scanscalar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\scantag.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\scantoken.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\simplekey.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\singledocparser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\stream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\src\tag.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\autodrive_system\AutoDrive_Framework\yaml-cpp\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{DA290F4A-67C9-36F3-BC7E-FBBA705D90DB}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

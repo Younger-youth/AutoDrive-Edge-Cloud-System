@@ -1,11 +1,11 @@
 # 自动驾驶系统全局配置文件
 
 system:
-  video_source: "D:/AutoDrive_Framework/data/test_video.mp4"
+  video_source: "D:/AutoDrive_System/AutoDrive_Framework/data/test_video.mp4"
   show_fps: true
 
 perception:
-  model_path: "D:/AutoDrive_Framework/models/yolov8n.onnx"
+  model_path: "D:/AutoDrive_System/AutoDrive_Framework/models/yolov8n.onnx"
   input_size: [320, 320]
   conf_threshold: 0.40
   nms_threshold: 0.45

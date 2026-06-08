@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\src\DistanceEstimator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\src\MultiTracker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\src\Tracker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\src\YoloDetector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\autodrive_system\AutoDrive_Framework\src\main_video.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\autodrive_system\AutoDrive_Framework\include\DistanceEstimator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\autodrive_system\AutoDrive_Framework\include\MultiTracker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\autodrive_system\AutoDrive_Framework\include\Tracker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\autodrive_system\AutoDrive_Framework\include\YoloDetector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\autodrive_system\AutoDrive_Framework\include\httplib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\autodrive_system\AutoDrive_Framework\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{72D6C34D-E6B5-31BB-8180-67CCC6458EDC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{DA290F4A-67C9-36F3-BC7E-FBBA705D90DB}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

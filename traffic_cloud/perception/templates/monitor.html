@@ -53,6 +53,12 @@
 <body>
 
     <h2>🤖 自动驾驶路侧/车端实时数据融合看板</h2>
+    <div style="text-align: center; margin-bottom: 20px; background: #262626; padding: 15px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
+        <button id="start-btn" style="padding: 12px 24px; font-size: 16px; font-weight: bold; background-color: #e91e63; color: white; border: none; border-radius: 5px; cursor: pointer; transition: 0.3s;">
+            🚀 远程唤醒 C++ 视觉感知节点
+        </button>
+        <span id="status-msg" style="margin-left: 20px; font-size: 16px; color: #888;">系统待命...</span>
+    </div>
 
     <div id="main-container">
         <div class="card">
@@ -135,6 +141,41 @@
                 })
                 .catch(err => console.error("数据获取失败:", err));
         }, 100); // 100ms 高频刷新
+        // 监听启动按钮的点击动作
+        document.getElementById('start-btn').addEventListener('click', function() {
+            const statusMsg = document.getElementById('status-msg');
+            const btn = document.getElementById('start-btn');
+            
+            // 1. 点击后立刻改变按钮状态，防止手抖连点（否则会同时启动好几个 C++ 窗口卡死电脑）
+            statusMsg.innerText = "正在向边缘节点下发点火指令...";
+            statusMsg.style.color = "#00bcd4";
+            btn.disabled = true; 
+            btn.style.backgroundColor = "#555";
+
+            // 2. 向 Django 后端刚才写的接口发送 POST 信号
+            fetch('/api/control/start/', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        // 启动成功，更新界面提示
+                        statusMsg.innerText = "✅ " + data.message;
+                        statusMsg.style.color = "#4caf50";
+                        btn.style.backgroundColor = "#4caf50";
+                        btn.innerText = "感知节点运行中";
+                    } else {
+                        // 启动失败，恢复按钮让用户可以重试
+                        statusMsg.innerText = "❌ " + data.message;
+                        statusMsg.style.color = "#f44336";
+                        btn.disabled = false;
+                        btn.style.backgroundColor = "#e91e63";
+                    }
+                })
+                .catch(err => {
+                    statusMsg.innerText = "❌ 云端通信中断";
+                    btn.disabled = false;
+                    btn.style.backgroundColor = "#e91e63";
+                });
+        });
     </script>
 </body>
 </html>

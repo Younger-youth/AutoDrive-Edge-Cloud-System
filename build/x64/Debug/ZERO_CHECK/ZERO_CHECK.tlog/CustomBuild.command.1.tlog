@@ -1,0 +1,10 @@
+^D:\AUTODRIVE_SYSTEM\BUILD\CMAKEFILES\70B33BF2331F7E76B1EE6E1FC36903F2\GENERATE.STAMP.RULE
+setlocal
+D:\VS\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe -SD:/autodrive_system/AutoDrive_Framework -BD:/autodrive_system/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/autodrive_system/build/AutonomousDrivingSystem.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,648 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.14"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						6,
+						7
+					]
+				},
+				{
+					"build" : "yaml-cpp",
+					"jsonFile" : "directory-yaml-cpp-Debug-2a326933adc829d16c8a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.4"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "yaml-cpp",
+					"targetIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5,
+						8,
+						9
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "AutonomousDrivingSystem",
+					"targetIndexes" : 
+					[
+						0,
+						6,
+						7
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "YAML_CPP",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5,
+						8,
+						9
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-Debug-e5baf09e52a7b2168a00.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ALL_BUILD::@087a93a4958cf3ca073e",
+					"jsonFile" : "target-ALL_BUILD-Debug-b123e71925a4ba2685a5.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "Continuous::@087a93a4958cf3ca073e",
+					"jsonFile" : "target-Continuous-Debug-2909905f548e0753dc5b.json",
+					"name" : "Continuous",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "Experimental::@087a93a4958cf3ca073e",
+					"jsonFile" : "target-Experimental-Debug-5b4052a6f2838a758031.json",
+					"name" : "Experimental",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "Nightly::@087a93a4958cf3ca073e",
+					"jsonFile" : "target-Nightly-Debug-935790770cefb97c4b1d.json",
+					"name" : "Nightly",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "NightlyMemoryCheck::@087a93a4958cf3ca073e",
+					"jsonFile" : "target-NightlyMemoryCheck-Debug-cfaec1223daec4572773.json",
+					"name" : "NightlyMemoryCheck",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-Debug-aeae24bc796b1a3168ae.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "main_video::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-main_video-Debug-6c27eb4d33ec9cf2313c.json",
+					"name" : "main_video",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "uninstall::@087a93a4958cf3ca073e",
+					"jsonFile" : "target-uninstall-Debug-af183735a9e7392b5374.json",
+					"name" : "uninstall",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "yaml-cpp::@087a93a4958cf3ca073e",
+					"jsonFile" : "target-yaml-cpp-Debug-be0b9b5606a265ae039d.json",
+					"name" : "yaml-cpp",
+					"projectIndex" : 1
+				}
+			]
+		},
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"jsonFile" : "directory-.-Release-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.14"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						6,
+						7
+					]
+				},
+				{
+					"build" : "yaml-cpp",
+					"jsonFile" : "directory-yaml-cpp-Release-2a326933adc829d16c8a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.4"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "yaml-cpp",
+					"targetIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5,
+						8,
+						9
+					]
+				}
+			],
+			"name" : "Release",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "AutonomousDrivingSystem",
+					"targetIndexes" : 
+					[
+						0,
+						6,
+						7
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "YAML_CPP",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5,
+						8,
+						9
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-Release-e5baf09e52a7b2168a00.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ALL_BUILD::@087a93a4958cf3ca073e",
+					"jsonFile" : "target-ALL_BUILD-Release-b123e71925a4ba2685a5.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "Continuous::@087a93a4958cf3ca073e",
+					"jsonFile" : "target-Continuous-Release-2909905f548e0753dc5b.json",
+					"name" : "Continuous",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "Experimental::@087a93a4958cf3ca073e",
+					"jsonFile" : "target-Experimental-Release-5b4052a6f2838a758031.json",
+					"name" : "Experimental",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "Nightly::@087a93a4958cf3ca073e",
+					"jsonFile" : "target-Nightly-Release-935790770cefb97c4b1d.json",
+					"name" : "Nightly",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "NightlyMemoryCheck::@087a93a4958cf3ca073e",
+					"jsonFile" : "target-NightlyMemoryCheck-Release-cfaec1223daec4572773.json",
+					"name" : "NightlyMemoryCheck",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-Release-aeae24bc796b1a3168ae.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "main_video::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-main_video-Release-4c02d9a75a5f43c2d786.json",
+					"name" : "main_video",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "uninstall::@087a93a4958cf3ca073e",
+					"jsonFile" : "target-uninstall-Release-af183735a9e7392b5374.json",
+					"name" : "uninstall",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "yaml-cpp::@087a93a4958cf3ca073e",
+					"jsonFile" : "target-yaml-cpp-Release-daf3b6665b1b9730aeed.json",
+					"name" : "yaml-cpp",
+					"projectIndex" : 1
+				}
+			]
+		},
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"jsonFile" : "directory-.-MinSizeRel-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.14"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						6,
+						7
+					]
+				},
+				{
+					"build" : "yaml-cpp",
+					"jsonFile" : "directory-yaml-cpp-MinSizeRel-2a326933adc829d16c8a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.4"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "yaml-cpp",
+					"targetIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5,
+						8,
+						9
+					]
+				}
+			],
+			"name" : "MinSizeRel",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "AutonomousDrivingSystem",
+					"targetIndexes" : 
+					[
+						0,
+						6,
+						7
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "YAML_CPP",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5,
+						8,
+						9
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-MinSizeRel-e5baf09e52a7b2168a00.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ALL_BUILD::@087a93a4958cf3ca073e",
+					"jsonFile" : "target-ALL_BUILD-MinSizeRel-b123e71925a4ba2685a5.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "Continuous::@087a93a4958cf3ca073e",
+					"jsonFile" : "target-Continuous-MinSizeRel-2909905f548e0753dc5b.json",
+					"name" : "Continuous",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "Experimental::@087a93a4958cf3ca073e",
+					"jsonFile" : "target-Experimental-MinSizeRel-5b4052a6f2838a758031.json",
+					"name" : "Experimental",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "Nightly::@087a93a4958cf3ca073e",
+					"jsonFile" : "target-Nightly-MinSizeRel-935790770cefb97c4b1d.json",
+					"name" : "Nightly",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "NightlyMemoryCheck::@087a93a4958cf3ca073e",
+					"jsonFile" : "target-NightlyMemoryCheck-MinSizeRel-cfaec1223daec4572773.json",
+					"name" : "NightlyMemoryCheck",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-MinSizeRel-aeae24bc796b1a3168ae.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "main_video::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-main_video-MinSizeRel-4ed9fd211fe73146ffd0.json",
+					"name" : "main_video",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "uninstall::@087a93a4958cf3ca073e",
+					"jsonFile" : "target-uninstall-MinSizeRel-af183735a9e7392b5374.json",
+					"name" : "uninstall",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "yaml-cpp::@087a93a4958cf3ca073e",
+					"jsonFile" : "target-yaml-cpp-MinSizeRel-dd08717a18583292326e.json",
+					"name" : "yaml-cpp",
+					"projectIndex" : 1
+				}
+			]
+		},
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"jsonFile" : "directory-.-RelWithDebInfo-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.14"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						6,
+						7
+					]
+				},
+				{
+					"build" : "yaml-cpp",
+					"jsonFile" : "directory-yaml-cpp-RelWithDebInfo-2a326933adc829d16c8a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.4"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "yaml-cpp",
+					"targetIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5,
+						8,
+						9
+					]
+				}
+			],
+			"name" : "RelWithDebInfo",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "AutonomousDrivingSystem",
+					"targetIndexes" : 
+					[
+						0,
+						6,
+						7
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "YAML_CPP",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5,
+						8,
+						9
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-e5baf09e52a7b2168a00.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ALL_BUILD::@087a93a4958cf3ca073e",
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-b123e71925a4ba2685a5.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "Continuous::@087a93a4958cf3ca073e",
+					"jsonFile" : "target-Continuous-RelWithDebInfo-2909905f548e0753dc5b.json",
+					"name" : "Continuous",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "Experimental::@087a93a4958cf3ca073e",
+					"jsonFile" : "target-Experimental-RelWithDebInfo-5b4052a6f2838a758031.json",
+					"name" : "Experimental",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "Nightly::@087a93a4958cf3ca073e",
+					"jsonFile" : "target-Nightly-RelWithDebInfo-935790770cefb97c4b1d.json",
+					"name" : "Nightly",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "NightlyMemoryCheck::@087a93a4958cf3ca073e",
+					"jsonFile" : "target-NightlyMemoryCheck-RelWithDebInfo-cfaec1223daec4572773.json",
+					"name" : "NightlyMemoryCheck",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-RelWithDebInfo-aeae24bc796b1a3168ae.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "main_video::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-main_video-RelWithDebInfo-03738929ebb672babfc4.json",
+					"name" : "main_video",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "uninstall::@087a93a4958cf3ca073e",
+					"jsonFile" : "target-uninstall-RelWithDebInfo-af183735a9e7392b5374.json",
+					"name" : "uninstall",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "yaml-cpp::@087a93a4958cf3ca073e",
+					"jsonFile" : "target-yaml-cpp-RelWithDebInfo-0f43a3738e0fcd384721.json",
+					"name" : "yaml-cpp",
+					"projectIndex" : 1
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "D:/autodrive_system/build",
+		"source" : "D:/autodrive_system/AutoDrive_Framework"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 8
+	}
+}

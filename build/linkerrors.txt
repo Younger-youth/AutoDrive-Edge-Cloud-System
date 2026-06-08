@@ -1,0 +1,203 @@
+================================================================================
+Linker Errors
+Generated: 2026-06-08T06:34:37.156Z
+Total Errors: 66
+================================================================================
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "void __cdecl cv::error(int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,char const *,char const *,int)" (?error@cv@@YAXHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBD1H@Z)，函数 "public: int __thiscall cv::Rect_<int>::area(void)const " (?area@?$Rect_@H@cv@@QBEHXZ) 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2001] (MSVC)
+无法解析的外部符号 "void __cdecl cv::error(int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,char const *,char const *,int)" (?error@cv@@YAXHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBD1H@Z) [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2001] (MSVC)
+无法解析的外部符号 "void __cdecl cv::error(int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,char const *,char const *,int)" (?error@cv@@YAXHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBD1H@Z) [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: __thiscall cv::Mat::Mat(class cv::Mat const &)" (??0Mat@cv@@QAE@ABV01@@Z)，函数 "public: __thiscall cv::KalmanFilter::KalmanFilter(class cv::KalmanFilter const &)" (??0KalmanFilter@cv@@QAE@ABV01@@Z) 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2001] (MSVC)
+无法解析的外部符号 "public: __thiscall cv::Mat::Mat(class cv::Mat const &)" (??0Mat@cv@@QAE@ABV01@@Z) [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: __thiscall cv::Mat::~Mat(void)" (??1Mat@cv@@QAE@XZ)，函数 __unwindfunclet$??0KalmanFilter@cv@@QAE@ABV01@@Z$0 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2001] (MSVC)
+无法解析的外部符号 "public: __thiscall cv::Mat::~Mat(void)" (??1Mat@cv@@QAE@XZ) [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2001] (MSVC)
+无法解析的外部符号 "public: __thiscall cv::Mat::~Mat(void)" (??1Mat@cv@@QAE@XZ) [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2001] (MSVC)
+无法解析的外部符号 "public: __thiscall cv::Mat::~Mat(void)" (??1Mat@cv@@QAE@XZ) [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: __thiscall cv::Mat::Mat(class cv::Mat &&)" (??0Mat@cv@@QAE@$$QAV01@@Z)，函数 "public: __thiscall cv::KalmanFilter::KalmanFilter(class cv::KalmanFilter &&)" (??0KalmanFilter@cv@@QAE@$$QAV01@@Z) 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2001] (MSVC)
+无法解析的外部符号 "public: __thiscall cv::Mat::Mat(class cv::Mat &&)" (??0Mat@cv@@QAE@$$QAV01@@Z) [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2001] (MSVC)
+无法解析的外部符号 "public: __thiscall cv::Mat::Mat(class cv::Mat &&)" (??0Mat@cv@@QAE@$$QAV01@@Z) [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: class cv::Mat & __thiscall cv::Mat::operator=(class cv::Mat &&)" (??4Mat@cv@@QAEAAV01@$$QAV01@@Z)，函数 "public: class cv::KalmanFilter & __thiscall cv::KalmanFilter::operator=(class cv::KalmanFilter &&)" (??4KalmanFilter@cv@@QAEAAV01@$$QAV01@@Z) 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2001] (MSVC)
+无法解析的外部符号 "public: class cv::Mat & __thiscall cv::Mat::operator=(class cv::Mat &&)" (??4Mat@cv@@QAEAAV01@$$QAV01@@Z) [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: __thiscall cv::Mat::Mat(void)" (??0Mat@cv@@QAE@XZ)，函数 "public: class cv::Rect_<int> __thiscall Track::predict(void)" (?predict@Track@@QAE?AV?$Rect_@H@cv@@XZ) 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2001] (MSVC)
+无法解析的外部符号 "public: __thiscall cv::Mat::Mat(void)" (??0Mat@cv@@QAE@XZ) [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2001] (MSVC)
+无法解析的外部符号 "public: __thiscall cv::Mat::Mat(void)" (??0Mat@cv@@QAE@XZ) [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: __thiscall cv::Mat::Mat(int,int,int)" (??0Mat@cv@@QAE@HHH@Z)，函数 "public: __thiscall cv::Mat_<float>::Mat_<float>(int,int)" (??0?$Mat_@M@cv@@QAE@HH@Z) 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: class cv::Mat & __thiscall cv::Mat::operator=(class cv::Mat const &)" (??4Mat@cv@@QAEAAV01@ABV01@@Z)，函数 "public: class cv::Mat_<float> & __thiscall cv::Mat_<float>::operator=(class cv::Mat const &)" (??4?$Mat_@M@cv@@QAEAAV01@ABVMat@1@@Z) 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: void __thiscall cv::Mat::convertTo(class cv::debug_build_guard::_OutputArray const &,int,double,double)const " (?convertTo@Mat@cv@@QBEXABV_OutputArray@debug_build_guard@2@HNN@Z)，函数 "public: class cv::Mat_<float> & __thiscall cv::Mat_<float>::operator=(class cv::Mat &&)" (??4?$Mat_@M@cv@@QAEAAV01@$$QAVMat@1@@Z) 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: class cv::Mat __thiscall cv::Mat::reshape(int,int,int const *)const " (?reshape@Mat@cv@@QBE?AV12@HHPBH@Z)，函数 "public: class cv::Mat_<float> & __thiscall cv::Mat_<float>::operator=(class cv::Mat &&)" (??4?$Mat_@M@cv@@QAEAAV01@$$QAVMat@1@@Z) 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: void __thiscall cv::Mat::release(void)" (?release@Mat@cv@@QAEXXZ)，函数 "public: void __thiscall cv::Mat_<float>::release(void)" (?release@?$Mat_@M@cv@@QAEXXZ) 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: bool __thiscall cv::Mat::empty(void)const " (?empty@Mat@cv@@QBE_NXZ)，函数 "public: class cv::MatConstIterator_<float> __thiscall cv::Mat::end<float>(void)const " (??$end@M@Mat@cv@@QBE?AV?$MatConstIterator_@M@1@XZ) 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2001] (MSVC)
+无法解析的外部符号 "public: bool __thiscall cv::Mat::empty(void)const " (?empty@Mat@cv@@QBE_NXZ) [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: unsigned int __thiscall cv::Mat::total(void)const " (?total@Mat@cv@@QBEIXZ)，函数 "public: class cv::MatConstIterator_<float> __thiscall cv::Mat::end<float>(void)const " (??$end@M@Mat@cv@@QBE?AV?$MatConstIterator_@M@1@XZ) 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: void __thiscall cv::MatConstIterator::seek(int,bool)" (?seek@MatConstIterator@cv@@QAEXH_N@Z)，函数 "public: class cv::MatConstIterator & __thiscall cv::MatConstIterator::operator++(void)" (??EMatConstIterator@cv@@QAEAAV01@XZ) 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: void __thiscall cv::MatConstIterator::seek(int const *,bool)" (?seek@MatConstIterator@cv@@QAEXPBH_N@Z)，函数 "public: __thiscall cv::MatConstIterator::MatConstIterator(class cv::Mat const *)" (??0MatConstIterator@cv@@QAE@PBVMat@1@@Z) 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "void __cdecl cv::setIdentity(class cv::debug_build_guard::_InputOutputArray const &,class cv::Scalar_<double> const &)" (?setIdentity@cv@@YAXABV_InputOutputArray@debug_build_guard@1@ABV?$Scalar_@N@1@@Z)，函数 "public: __thiscall Track::Track(int,class cv::Rect_<int> const &)" (??0Track@@QAE@HABV?$Rect_@H@cv@@@Z) 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: __thiscall cv::KalmanFilter::KalmanFilter(void)" (??0KalmanFilter@cv@@QAE@XZ)，函数 "public: __thiscall Track::Track(int,class cv::Rect_<int> const &)" (??0Track@@QAE@HABV?$Rect_@H@cv@@@Z) 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: __thiscall cv::KalmanFilter::KalmanFilter(int,int,int,int)" (??0KalmanFilter@cv@@QAE@HHHH@Z)，函数 "public: __thiscall Track::Track(int,class cv::Rect_<int> const &)" (??0Track@@QAE@HABV?$Rect_@H@cv@@@Z) 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: class cv::Mat const & __thiscall cv::KalmanFilter::predict(class cv::Mat const &)" (?predict@KalmanFilter@cv@@QAEABVMat@2@ABV32@@Z)，函数 "public: class cv::Rect_<int> __thiscall Track::predict(void)" (?predict@Track@@QAE?AV?$Rect_@H@cv@@XZ) 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: class cv::Mat const & __thiscall cv::KalmanFilter::correct(class cv::Mat const &)" (?correct@KalmanFilter@cv@@QAEABVMat@2@ABV32@@Z)，函数 "public: void __thiscall Track::update(class cv::Rect_<int> const &)" (?update@Track@@QAEXABV?$Rect_@H@cv@@@Z) 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: __thiscall cv::Mat::Mat(int,int,int,void *,unsigned int)" (??0Mat@cv@@QAE@HHHPAXI@Z)，函数 __catch$?init@YoloDetector@@QAE_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z$1 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "void __cdecl cv::copyMakeBorder(class cv::debug_build_guard::_InputArray const &,class cv::debug_build_guard::_OutputArray const &,int,int,int,int,int,class cv::Scalar_<double> const &)" (?copyMakeBorder@cv@@YAXABV_InputArray@debug_build_guard@1@ABV_OutputArray@31@HHHHHABV?$Scalar_@N@1@@Z)，函数 __catch$?init@YoloDetector@@QAE_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z$1 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "void __cdecl cv::transpose(class cv::debug_build_guard::_InputArray const &,class cv::debug_build_guard::_OutputArray const &)" (?transpose@cv@@YAXABV_InputArray@debug_build_guard@1@ABV_OutputArray@31@@Z)，函数 __catch$?init@YoloDetector@@QAE_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z$1 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: __thiscall cv::dnn::dnn4_v20250619::Net::~Net(void)" (??1Net@dnn4_v20250619@dnn@cv@@QAE@XZ)，函数 "public: bool __thiscall YoloDetector::init(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?init@YoloDetector@@QAE_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2001] (MSVC)
+无法解析的外部符号 "public: __thiscall cv::dnn::dnn4_v20250619::Net::~Net(void)" (??1Net@dnn4_v20250619@dnn@cv@@QAE@XZ) [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: void __thiscall cv::dnn::dnn4_v20250619::Net::forward(class cv::debug_build_guard::_OutputArray const &,class std::vector<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::allocator<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > const &)" (?forward@Net@dnn4_v20250619@dnn@cv@@QAEXABV_OutputArray@debug_build_guard@4@ABV?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@@Z)，函数 __catch$?init@YoloDetector@@QAE_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z$1 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: void __thiscall cv::dnn::dnn4_v20250619::Net::setPreferableBackend(int)" (?setPreferableBackend@Net@dnn4_v20250619@dnn@cv@@QAEXH@Z)，函数 "public: bool __thiscall YoloDetector::init(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?init@YoloDetector@@QAE_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: void __thiscall cv::dnn::dnn4_v20250619::Net::setPreferableTarget(int)" (?setPreferableTarget@Net@dnn4_v20250619@dnn@cv@@QAEXH@Z)，函数 "public: bool __thiscall YoloDetector::init(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?init@YoloDetector@@QAE_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: void __thiscall cv::dnn::dnn4_v20250619::Net::setInput(class cv::debug_build_guard::_InputArray const &,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,double,class cv::Scalar_<double> const &)" (?setInput@Net@dnn4_v20250619@dnn@cv@@QAEXABV_InputArray@debug_build_guard@4@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@NABV?$Scalar_@N@4@@Z)，函数 __catch$?init@YoloDetector@@QAE_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z$1 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: class std::vector<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::allocator<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > __thiscall cv::dnn::dnn4_v20250619::Net::getUnconnectedOutLayersNames(void)const " (?getUnconnectedOutLayersNames@Net@dnn4_v20250619@dnn@cv@@QBE?AV?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@XZ)，函数 __catch$?init@YoloDetector@@QAE_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z$1 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "class cv::dnn::dnn4_v20250619::Net __cdecl cv::dnn::dnn4_v20250619::readNetFromONNX(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?readNetFromONNX@dnn4_v20250619@dnn@cv@@YA?AVNet@123@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)，函数 "public: bool __thiscall YoloDetector::init(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?init@YoloDetector@@QAE_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "class cv::Mat __cdecl cv::dnn::dnn4_v20250619::blobFromImage(class cv::debug_build_guard::_InputArray const &,double,class cv::Size_<int> const &,class cv::Scalar_<double> const &,bool,bool,int)" (?blobFromImage@dnn4_v20250619@dnn@cv@@YA?AVMat@3@ABV_InputArray@debug_build_guard@3@NABV?$Size_@H@3@ABV?$Scalar_@N@3@_N3H@Z)，函数 __catch$?init@YoloDetector@@QAE_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z$1 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "void __cdecl cv::dnn::dnn4_v20250619::NMSBoxes(class std::vector<class cv::Rect_<int>,class std::allocator<class cv::Rect_<int> > > const &,class std::vector<float,class std::allocator<float> > const &,float,float,class std::vector<int,class std::allocator<int> > &,float,int)" (?NMSBoxes@dnn4_v20250619@dnn@cv@@YAXABV?$vector@V?$Rect_@H@cv@@V?$allocator@V?$Rect_@H@cv@@@std@@@std@@ABV?$vector@MV?$allocator@M@std@@@5@MMAAV?$vector@HV?$allocator@H@std@@@5@MH@Z)，函数 __catch$?init@YoloDetector@@QAE_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z$1 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "void __cdecl cv::resize(class cv::debug_build_guard::_InputArray const &,class cv::debug_build_guard::_OutputArray const &,class cv::Size_<int>,double,double,int)" (?resize@cv@@YAXABV_InputArray@debug_build_guard@1@ABV_OutputArray@31@V?$Size_@H@1@NNH@Z)，函数 __catch$?init@YoloDetector@@QAE_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z$1 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __cdecl cv::format(char const *,...)" (?format@cv@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBDZZ)，函数 __catch$_main$0 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "__int64 __cdecl cv::getTickCount(void)" (?getTickCount@cv@@YA_JXZ)，函数 "public: void __thiscall cv::TickMeter::start(void)" (?start@TickMeter@cv@@QAEXXZ) 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "double __cdecl cv::getTickFrequency(void)" (?getTickFrequency@cv@@YANXZ)，函数 "public: double __thiscall cv::TickMeter::getTimeSec(void)const " (?getTimeSec@TickMeter@cv@@QBENXZ) 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "enum cv::utils::logging::LogLevel __cdecl cv::utils::logging::setLogLevel(enum cv::utils::logging::LogLevel)" (?setLogLevel@logging@utils@cv@@YA?AW4LogLevel@123@W44123@@Z)，函数 _main 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: __thiscall cv::dnn::dnn4_v20250619::Net::Net(void)" (??0Net@dnn4_v20250619@dnn@cv@@QAE@XZ)，函数 "public: __thiscall YoloDetector::YoloDetector(void)" (??0YoloDetector@@QAE@XZ) 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: __thiscall cv::VideoCapture::VideoCapture(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,int)" (??0VideoCapture@cv@@QAE@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@Z)，函数 __catch$_main$0 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: virtual __thiscall cv::VideoCapture::~VideoCapture(void)" (??1VideoCapture@cv@@UAE@XZ)，函数 __catch$_main$0 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: virtual bool __thiscall cv::VideoCapture::isOpened(void)const " (?isOpened@VideoCapture@cv@@UBE_NXZ)，函数 __catch$_main$0 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "public: virtual void __thiscall cv::VideoCapture::release(void)" (?release@VideoCapture@cv@@UAEXXZ)，函数 __catch$_main$0 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "void __cdecl cv::namedWindow(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,int)" (?namedWindow@cv@@YAXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@Z)，函数 __catch$_main$0 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "void __cdecl cv::destroyAllWindows(void)" (?destroyAllWindows@cv@@YAXXZ)，函数 __catch$_main$0 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "int __cdecl cv::waitKey(int)" (?waitKey@cv@@YAHH@Z)，函数 __catch$_main$0 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "void __cdecl cv::imshow(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class cv::debug_build_guard::_InputArray const &)" (?imshow@cv@@YAXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@ABV_InputArray@debug_build_guard@1@@Z)，函数 __catch$_main$0 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "void __cdecl cv::resizeWindow(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,int,int)" (?resizeWindow@cv@@YAXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HH@Z)，函数 __catch$_main$0 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "void __cdecl cv::rectangle(class cv::debug_build_guard::_InputOutputArray const &,class cv::Point_<int>,class cv::Point_<int>,class cv::Scalar_<double> const &,int,int,int)" (?rectangle@cv@@YAXABV_InputOutputArray@debug_build_guard@1@V?$Point_@H@1@1ABV?$Scalar_@N@1@HHH@Z)，函数 __catch$_main$0 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "void __cdecl cv::rectangle(class cv::debug_build_guard::_InputOutputArray const &,class cv::Rect_<int>,class cv::Scalar_<double> const &,int,int,int)" (?rectangle@cv@@YAXABV_InputOutputArray@debug_build_guard@1@V?$Rect_@H@1@ABV?$Scalar_@N@1@HHH@Z)，函数 __catch$_main$0 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "void __cdecl cv::putText(class cv::debug_build_guard::_InputOutputArray const &,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class cv::Point_<int>,int,double,class cv::Scalar_<double>,int,int,bool)" (?putText@cv@@YAXABV_InputOutputArray@debug_build_guard@1@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$Point_@H@1@HNV?$Scalar_@N@1@HH_N@Z)，函数 __catch$_main$0 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK2019] (MSVC)
+无法解析的外部符号 "class cv::Size_<int> __cdecl cv::getTextSize(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,int,double,int,int *)" (?getTextSize@cv@@YA?AV?$Size_@H@1@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HNHPAH@Z)，函数 __catch$_main$0 中引用了该符号 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK4272] (MSVC)
+库计算机类型“x64”与目标计算机类型“x86”冲突 [D:\autodrive_system\build\main_video.vcxproj]
+
+[LNK1120] (MSVC)
+51 个无法解析的外部命令 [D:\autodrive_system\build\main_video.vcxproj]

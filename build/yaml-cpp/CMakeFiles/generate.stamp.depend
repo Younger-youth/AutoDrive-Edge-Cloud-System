@@ -1,0 +1,21 @@
+# CMake generation dependency list for this directory.
+D:/VS/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in
+D:/VS/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake
+D:/VS/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDependentOption.cmake
+D:/VS/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakePackageConfigHelpers.cmake
+D:/VS/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CTest.cmake
+D:/VS/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CTestTargets.cmake
+D:/VS/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CTestUseLaunchers.cmake
+D:/VS/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CheckCXXCompilerFlag.cmake
+D:/VS/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CheckCXXSourceCompiles.cmake
+D:/VS/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/DartConfiguration.tcl.in
+D:/VS/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/GNUInstallDirs.cmake
+D:/VS/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/Internal/CheckCompilerFlag.cmake
+D:/VS/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/Internal/CheckFlagCommonConfig.cmake
+D:/VS/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/Internal/CheckSourceCompiles.cmake
+D:/VS/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/WriteBasicConfigVersionFile.cmake
+D:/autodrive_system/AutoDrive_Framework/yaml-cpp/CMakeLists.txt
+D:/autodrive_system/AutoDrive_Framework/yaml-cpp/cmake_uninstall.cmake.in
+D:/autodrive_system/AutoDrive_Framework/yaml-cpp/yaml-cpp-config.cmake.in
+D:/autodrive_system/AutoDrive_Framework/yaml-cpp/yaml-cpp.pc.in
+D:/autodrive_system/build/CMakeFiles/cmake.verify_globs

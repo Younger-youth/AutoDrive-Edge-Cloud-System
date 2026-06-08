@@ -25,6 +25,8 @@ urlpatterns = [
     # 2. 前端往这里要数据
     path('api/perception/latest/', views.get_latest_data, name='get_latest_data'),
     # 3. 浏览器访问的可视化大屏主页
+    path('api/control/start/', views.start_engine, name='start_engine'),
+    
     path('monitor/', views.monitor_panel, name='monitor_panel'),
 ]
 

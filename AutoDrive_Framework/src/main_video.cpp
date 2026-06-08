@@ -24,7 +24,7 @@ int main(int argc, char** argv) {
     cv::utils::logging::setLogLevel(cv::utils::logging::LOG_LEVEL_WARNING);
     cout << "[INFO] 自动驾驶感知与追踪系统启动中..." << endl;
 
-    string config_path = "D:/AutoDrive_Framework/config.yaml";
+    string config_path = "D:/AutoDrive_System/AutoDrive_Framework/config.yaml";
     if (argc >= 2) config_path = argv[1]; 
 
     YAML::Node config;
