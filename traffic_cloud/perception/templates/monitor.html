@@ -54,8 +54,14 @@
 
     <h2>🤖 自动驾驶路侧/车端实时数据融合看板</h2>
     <div style="text-align: center; margin-bottom: 20px; background: #262626; padding: 15px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
+        
+        <select id="model-select" style="padding: 12px; font-size: 16px; margin-right: 15px; border-radius: 5px; background-color: #333; color: white; border: 1px solid #555; outline: none;">
+            <option value="yolov8n.onnx">⚡ YOLOv8 Nano (适合低算力/极速)</option>
+            <option value="yolov8s.onnx">🔬 YOLOv8 Small (适合高算力/高精度)</option>
+            </select>
+
         <button id="start-btn" style="padding: 12px 24px; font-size: 16px; font-weight: bold; background-color: #e91e63; color: white; border: none; border-radius: 5px; cursor: pointer; transition: 0.3s;">
-            🚀 远程唤醒 C++ 视觉感知节点
+            🚀 挂载模型并唤醒感知节点
         </button>
         <span id="status-msg" style="margin-left: 20px; font-size: 16px; color: #888;">系统待命...</span>
     </div>
@@ -146,36 +152,49 @@
             const statusMsg = document.getElementById('status-msg');
             const btn = document.getElementById('start-btn');
             
-            // 1. 点击后立刻改变按钮状态，防止手抖连点（否则会同时启动好几个 C++ 窗口卡死电脑）
-            statusMsg.innerText = "正在向边缘节点下发点火指令...";
+            // 获取用户当前选中的模型文件名
+            const selectedModel = document.getElementById('model-select').value;
+            
+            statusMsg.innerText = `正在向边缘节点下发配置 [${selectedModel}] ...`;
             statusMsg.style.color = "#00bcd4";
             btn.disabled = true; 
             btn.style.backgroundColor = "#555";
 
-            // 2. 向 Django 后端刚才写的接口发送 POST 信号
-            fetch('/api/control/start/', { method: 'POST' })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === 'success') {
-                        // 启动成功，更新界面提示
-                        statusMsg.innerText = "✅ " + data.message;
-                        statusMsg.style.color = "#4caf50";
-                        btn.style.backgroundColor = "#4caf50";
-                        btn.innerText = "感知节点运行中";
-                    } else {
-                        // 启动失败，恢复按钮让用户可以重试
-                        statusMsg.innerText = "❌ " + data.message;
-                        statusMsg.style.color = "#f44336";
+            // 将模型名称打包成 JSON 发给 Django 后端
+            fetch('/api/control/start/', { 
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ model_name: selectedModel })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    statusMsg.innerText = "✅ " + data.message;
+                    statusMsg.style.color = "#4caf50";
+                    
+                    // 🎯 核心修复：两秒后自动解锁按钮，允许用户再次切换模型
+                    setTimeout(() => {
                         btn.disabled = false;
                         btn.style.backgroundColor = "#e91e63";
-                    }
-                })
-                .catch(err => {
-                    statusMsg.innerText = "❌ 云端通信中断";
+                        btn.innerText = "🔄 切换模型并重新唤醒";
+                    }, 2000); // 延迟 2 秒解锁，既防止了高频连点，又保证了可以重复操作
+                    
+                } else {
+                    statusMsg.innerText = "❌ " + data.message;
+                    statusMsg.style.color = "#f44336";
                     btn.disabled = false;
                     btn.style.backgroundColor = "#e91e63";
-                });
+                }
+            })
+            .catch(err => {
+                statusMsg.innerText = "❌ 云端通信中断";
+                btn.disabled = false;
+                btn.style.backgroundColor = "#e91e63";
+            });
         });
+        
     </script>
 </body>
 </html>
