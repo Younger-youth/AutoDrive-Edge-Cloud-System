@@ -1,0 +1,120 @@
+#include <iostream>
+#include <opencv2/opencv.hpp>
+#include <opencv2/core/utils/logger.hpp> 
+#include <yaml-cpp/yaml.h>
+
+// 引入自动驾驶核心模块
+#include "YoloDetector.h" 
+#include "MultiTracker.h" 
+#include "DistanceEstimator.h"
+
+// 新增：引入网络与 JSON 库
+#define WIN32_LEAN_AND_MEAN // 避免 Windows 头文件冲突
+#include "httplib.h"
+#include "json.hpp"
+
+using namespace std;
+using namespace cv;
+using json = nlohmann::json; // 定义 JSON 命名空间别名
+
+int main(int argc, char** argv) {
+
+    SetConsoleOutputCP(CP_UTF8);
+    
+    cv::utils::logging::setLogLevel(cv::utils::logging::LOG_LEVEL_WARNING);
+    cout << "[INFO] 自动驾驶感知与追踪系统启动中..." << endl;
+
+    string config_path = "D:/AutoDrive_Framework/config.yaml";
+    if (argc >= 2) config_path = argv[1]; 
+
+    YAML::Node config;
+    try {
+        config = YAML::LoadFile(config_path);
+    } catch (const YAML::Exception& e) {
+        cout << "[ERROR] 无法读取 YAML！" << endl;
+        return -1;
+    }
+
+    string model_path = config["perception"]["model_path"].as<string>();
+    string video_path = config["system"]["video_source"].as<string>();
+
+    YoloDetector detector;
+    if (!detector.init(model_path)) return -1;
+
+    MultiTracker tracker; 
+    DistanceEstimator distance_estimator;
+    
+    // 新增：实例化 HTTP 客户端，指向本地的 Django 默认端口 8000
+    httplib::Client cli("http://127.0.0.1:8000");
+    // 设置连接超时时间为 100 毫秒，防止由于 Django 未启动导致 C++ 视频流卡顿
+    cli.set_connection_timeout(0, 100000); 
+
+    VideoCapture cap(video_path); 
+    if (!cap.isOpened()) return -1;
+
+    Mat frame;
+    namedWindow("Autonomous Perception", WINDOW_NORMAL);
+    resizeWindow("Autonomous Perception", 1280, 720);
+    TickMeter tm;
+
+    int frame_count = 0; // 新增：记录当前帧编号
+
+    while (true) {
+        cap >> frame; 
+        if (frame.empty()) break;
+
+        tm.start();
+        vector<Rect> detections = detector.detect(frame);
+        vector<pair<int, Rect>> tracked_objects;
+        tracker.update(detections, tracked_objects);
+        
+        // 新增：初始化当前帧的 JSON 数据包
+        json payload;
+        payload["frame_id"] = frame_count++;
+        payload["objects"] = json::array();
+
+        for (const auto& obj : tracked_objects) {
+            int id = obj.first;
+            Rect box = obj.second;
+            float dist_m = distance_estimator.calculateDistance(box);
+            
+            // 新增：如果测距有效，将数据写入 JSON
+            if (dist_m > 0) {
+                json item;
+                item["target_id"] = id;
+                item["distance"] = dist_m;
+                payload["objects"].push_back(item);
+            }
+
+            // 原有渲染逻辑保持不变
+            rectangle(frame, box, Scalar(255, 144, 30), 2);
+            string label = "ID: " + to_string(id);
+            if (dist_m > 0) {
+                label += " D: " + format("%.1f", dist_m) + "m";
+            }
+            int baseLine;
+            Size labelSize = getTextSize(label, FONT_HERSHEY_SIMPLEX, 0.6, 2, &baseLine);
+            rectangle(frame, Point(box.x, box.y - labelSize.height - 5), 
+                      Point(box.x + labelSize.width, box.y), Scalar(255, 144, 30), FILLED);
+            putText(frame, label, Point(box.x, box.y - 5), FONT_HERSHEY_SIMPLEX, 0.6, Scalar(0, 0, 0), 2);
+        }
+
+        // 新增：通过 HTTP POST 发送数据 (如果本帧有有效目标)
+        if (!payload["objects"].empty()) {
+            string json_str = payload.dump();
+            // 注意：此时发送请求如果失败，终端可能不报错，以保障主循环 FPS 不受影响
+            cli.Post("/api/perception/upload/", json_str, "application/json");
+        }
+
+        tm.stop();
+        string fps_text = "FPS: " + format("%.1f", tm.getFPS());
+        putText(frame, fps_text, Point(20, 40), FONT_HERSHEY_SIMPLEX, 1.0, Scalar(0, 0, 255), 2);
+        tm.reset();
+
+        imshow("Autonomous Perception", frame);
+        if (waitKey(1) == 27) break;
+    }
+    cap.release();
+    destroyAllWindows();
+    return 0;
+}

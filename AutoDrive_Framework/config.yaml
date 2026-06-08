@@ -1,0 +1,22 @@
+# 自动驾驶系统全局配置文件
+
+system:
+  video_source: "D:/AutoDrive_Framework/data/test_video.mp4"
+  show_fps: true
+
+perception:
+  model_path: "D:/AutoDrive_Framework/models/yolov8n.onnx"
+  input_size: [320, 320]
+  conf_threshold: 0.40
+  nms_threshold: 0.45
+
+# 为下游的轨迹跟踪和 NMPC (非线性模型预测控制) 预留的参数接口
+control_nmpc:
+  horizon: 20                  # 预测步长
+  dt: 0.05                     # 控制周期 (秒)
+  vehicle_dynamics:
+    wheelbase: 4.5             # 轴距 (重型车辆通常较长)
+    max_steering_angle: 0.6    # 最大前轮转角 (弧度)
+  weights:
+    Q: [100.0, 100.0, 10.0]    # 轨迹跟踪权重 (横向偏差, 纵向偏差, 航向角)
+    R: [1.0, 0.1]              # 控制增量惩罚权重

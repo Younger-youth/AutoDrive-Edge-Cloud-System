@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>自动驾驶云端感知实时监控大屏</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #00bcd4;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        #main-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .card {
+            background: #262626;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            padding: 15px;
+            margin: 10px;
+        }
+        #chart {
+            width: 800px;
+            height: 450px;
+        }
+        #data-box {
+            width: 350px;
+            height: 450px;
+            overflow-y: auto;
+        }
+        .data-item {
+            padding: 10px;
+            border-bottom: 1px solid #333;
+            font-size: 14px;
+        }
+        .highlight {
+            color: #ff9800;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>🤖 自动驾驶路侧/车端实时数据融合看板</h2>
+
+    <div id="main-container">
+        <div class="card">
+            <div id="chart"></div>
+        </div>
+
+        <div class="card">
+            <h3>📋 实时目标感知日志</h3>
+            <div id="data-box">
+                <p style="color: #888;">正在等待 C++ 端数据流输入...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 初始化 ECharts 图表
+        const chartDom = document.getElementById('chart');
+        const myChart = echarts.init(chartDom, 'dark'); // 载入深色主题
+        
+        let frameIds = [];
+        let distanceData = []; // 假设我们重点追踪 ID 为 1 的主力前车距离
+
+        const option = {
+            title: { text: '前车(ID: 1) 纵向物理距离实时追踪趋势', left: 'center', textStyle: { color: '#00bcd4' } },
+            tooltip: { trigger: 'axis' },
+            xAxis: { type: 'category', data: frameIds, name: '帧率(Frame)' },
+            yAxis: { type: 'value', name: '距离 (米)', min: 0, max: 50 },
+            series: [{
+                name: '目标车距',
+                type: 'line',
+                data: distanceData,
+                smooth: true,
+                itemStyle: { color: '#ff9800' },
+                areaStyle: { opacity: 0.1 } // 阴影面积区域
+            }]
+        };
+        myChart.setOption(option);
+
+        // 高频定时器：每 100 毫秒（0.1秒）向 Django 发送一次轮询请求获取最新数据
+        setInterval(() => {
+            fetch('/api/perception/latest/')
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.objects || data.objects.length === 0) return;
+
+                    const frameId = data.frame_id;
+                    const objects = data.objects;
+
+                    // 1. 更新右侧文本日志框
+                    const dataBox = document.getElementById('data-box');
+                    let htmlContent = `<h4>帧编号: ${frameId}</h4>`;
+                    
+                    let target1Distance = null;
+
+                    objects.forEach(obj => {
+                        htmlContent += `<div class="data-item">🚗 目标 ID: <span class="highlight">${obj.target_id}</span> | 相对距离: ${obj.distance.toFixed(2)} 米</div>`;
+                        // 筛选出 ID 为 1 的车用来画折线图
+                        if (obj.target_id === 1) {
+                            target1Distance = obj.distance;
+                        }
+                    });
+                    dataBox.innerHTML = htmlContent;
+
+                    // 2. 更新左侧折线图 (保证队列长度为 50 帧，多了就剔除旧数据)
+                    if (target1Distance !== null) {
+                        frameIds.push(frameId);
+                        distanceData.push(target1Distance);
+
+                        if (frameIds.length > 50) {
+                            frameIds.shift();
+                            distanceData.shift();
+                        }
+
+                        // 让图表重新渲染新点
+                        myChart.setOption({
+                            xAxis: { data: frameIds },
+                            series: [{ data: distanceData }]
+                        });
+                    }
+                })
+                .catch(err => console.error("数据获取失败:", err));
+        }, 100); // 100ms 高频刷新
+    </script>
+</body>
+</html>
