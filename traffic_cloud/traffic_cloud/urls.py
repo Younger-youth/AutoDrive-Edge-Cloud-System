@@ -27,6 +27,17 @@ urlpatterns = [
     # 3. 浏览器访问的可视化大屏主页
     path('api/control/start/', views.start_engine, name='start_engine'),
     
+    # 新增：C++ 上传图像帧接口与前端视频流分发接口
+    path('api/perception/upload_frame/', views.upload_frame, name='upload_frame'),
+    path('api/perception/video_feed/', views.video_feed, name='video_feed'),
+    
+    # 新增：前端下发跳转进度指令接口
+    path('api/perception/seek/', views.seek_video, name='seek_video'),
+    
+    # 新增：暂停与停止感知引擎接口
+    path('api/control/pause/', views.pause_engine, name='pause_engine'),
+    path('api/control/stop/', views.stop_engine, name='stop_engine'),
+    
     path('monitor/', views.monitor_panel, name='monitor_panel'),
 ]
 

@@ -1,11 +1,12 @@
 system:
-  video_source: D:/AutoDrive_System/AutoDrive_Framework/data/test_video.mp4
+  video_source: D:/AutoDrive_System/AutoDrive_Framework/data/uploads/user_uploaded.mp4
   show_fps: true
+  show_gui: false
 perception:
-  model_path: D:/AutoDrive_System/AutoDrive_Framework/models/yolov8s.onnx
+  model_path: D:/AutoDrive_System/AutoDrive_Framework/models/yolov8n.onnx
   input_size:
-  - 640
-  - 640
+  - 320
+  - 320
   conf_threshold: 0.25
   nms_threshold: 0.45
 control_nmpc:

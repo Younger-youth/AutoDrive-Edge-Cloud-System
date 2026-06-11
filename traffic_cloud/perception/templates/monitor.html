@@ -20,23 +20,31 @@
         }
         #main-container {
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             flex-wrap: wrap;
+            gap: 15px;
         }
         .card {
             background: #262626;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.5);
             padding: 15px;
-            margin: 10px;
+            margin: 5px;
+        }
+        #video-card {
+            width: 700px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         #chart {
-            width: 800px;
-            height: 450px;
+            width: 700px;
+            height: 400px;
         }
         #data-box {
-            width: 350px;
-            height: 450px;
+            width: 300px;
+            height: 400px;
             overflow-y: auto;
         }
         .data-item {
@@ -53,120 +61,320 @@
 <body>
 
     <h2>🤖 自动驾驶路侧/车端实时数据融合看板</h2>
-    <div style="text-align: center; margin-bottom: 20px; background: #262626; padding: 15px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
+    <div style="text-align: center; margin-bottom: 20px; background: #262626; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap;">
         
-        <select id="model-select" style="padding: 12px; font-size: 16px; margin-right: 15px; border-radius: 5px; background-color: #333; color: white; border: 1px solid #555; outline: none;">
+        <!-- 视频上传 -->
+        <div style="position: relative; overflow: hidden; display: inline-block;">
+            <button style="padding: 12px 20px; font-size: 16px; font-weight: bold; background-color: #00bcd4; color: white; border: none; border-radius: 5px; cursor: pointer; display: flex; align-items: center; gap: 5px; transition: 0.2s;">
+                📁 选择本地视频 (.mp4)
+            </button>
+            <input type="file" id="video-file" accept="video/mp4" style="position: absolute; font-size: 100px; right: 0; top: 0; opacity: 0; cursor: pointer;" />
+        </div>
+        <span id="file-name" style="font-size: 14px; color: #aaa; max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-right: 15px;">未选择文件（默认测试视频）</span>
+
+        <!-- 模型选择 -->
+        <select id="model-select" style="padding: 12px; font-size: 16px; border-radius: 5px; background-color: #333; color: white; border: 1px solid #555; outline: none; margin-right: 10px;">
             <option value="yolov8n.onnx">⚡ YOLOv8 Nano (适合低算力/极速)</option>
             <option value="yolov8s.onnx">🔬 YOLOv8 Small (适合高算力/高精度)</option>
-            </select>
+        </select>
 
+        <!-- 启动按钮 -->
         <button id="start-btn" style="padding: 12px 24px; font-size: 16px; font-weight: bold; background-color: #e91e63; color: white; border: none; border-radius: 5px; cursor: pointer; transition: 0.3s;">
-            🚀 挂载模型并唤醒感知节点
+            🚀 启动感知节点
         </button>
-        <span id="status-msg" style="margin-left: 20px; font-size: 16px; color: #888;">系统待命...</span>
+        <span id="status-msg" style="font-size: 16px; color: #888; min-width: 150px; text-align: left;">系统待命...</span>
     </div>
 
     <div id="main-container">
-        <div class="card">
-            <div id="chart"></div>
+        <!-- 实时视频画面 -->
+        <div class="card" id="video-card">
+            <h3 style="margin-top: 0; color: #00bcd4; align-self: flex-start; margin-bottom: 10px; font-size: 16px;">🎥 实时感知视频流</h3>
+            <div style="width: 100%; height: calc(100% - 80px); display: flex; justify-content: center; align-items: center; background: #000; border-radius: 5px; overflow: hidden; position: relative;">
+                <img id="video-stream" src="" style="display: none; width: 100%; height: 100%; object-fit: contain; cursor: pointer;" />
+                <div id="video-placeholder" style="display: flex; flex-direction: column; align-items: center; justify-content: center; color: #888; font-size: 14px;">
+                    <span style="font-size: 48px; margin-bottom: 10px;">📺</span>
+                    <span>等待感知节点唤醒...</span>
+                </div>
+            </div>
+            
+            <!-- 进度控制条 -->
+            <div style="width: 100%; height: 35px; display: flex; align-items: center; justify-content: space-between; margin-top: 10px; gap: 10px; box-sizing: border-box; padding: 0 5px;">
+                <button id="play-pause-btn" title="播放/暂停" style="background: none; border: none; color: #00bcd4; font-size: 16px; cursor: pointer; padding: 0; outline: none; transition: 0.2s; display: flex; align-items: center;" disabled>⏸️</button>
+                <button id="stop-node-btn" title="停止节点" style="background: none; border: none; color: #f44336; font-size: 16px; cursor: pointer; padding: 0; outline: none; transition: 0.2s; display: flex; align-items: center;" disabled>⏹️</button>
+                <span id="time-display" style="font-size: 12px; color: #aaa; font-family: monospace; min-width: 90px; text-align: left; margin-left: 5px;">00:00 / 00:00</span>
+                <input type="range" id="progress-bar" min="0" max="100" value="0" style="flex-grow: 1; cursor: pointer; height: 6px; border-radius: 3px; background: #555; outline: none; transition: background 450ms ease-in-out;" disabled />
+            </div>
         </div>
 
+        <!-- 核心数据分析看板 -->
+        <div class="card" style="width: 700px; height: 400px; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box;">
+            <h3 style="margin-top: 0; color: #00bcd4; margin-bottom: 5px; font-size: 16px; align-self: flex-start;">📊 交通流与行车安全评估系统</h3>
+            <div style="width: 100%; height: calc(100% - 35px); display: flex; gap: 10px;">
+                <!-- 安全指数仪表盘 -->
+                <div id="safety-gauge" style="width: 40%; height: 100%;"></div>
+                <!-- 车流量趋势折线图 -->
+                <div id="volume-chart" style="width: 60%; height: 100%;"></div>
+            </div>
+        </div>
+
+        <!-- 实时数据日志 -->
         <div class="card">
-            <h3>📋 实时目标感知日志</h3>
+            <h3 style="margin-top: 0; color: #ff9800; margin-bottom: 10px; font-size: 16px;">📋 实时目标感知日志</h3>
             <div id="data-box">
-                <p style="color: #888;">正在等待 C++ 端数据流输入...</p>
+                <p style="color: #888; font-size: 14px;">正在等待 C++ 端数据流输入...</p>
             </div>
         </div>
     </div>
 
     <script>
-        // 初始化 ECharts 图表
-        const chartDom = document.getElementById('chart');
-        const myChart = echarts.init(chartDom, 'dark'); // 载入深色主题
+        // 1. 初始化安全仪表盘
+        const gaugeDom = document.getElementById('safety-gauge');
+        const safetyGauge = echarts.init(gaugeDom, 'dark');
         
-        let frameIds = [];
-        let distanceData = []; // 假设我们重点追踪 ID 为 1 的主力前车距离
-
-        const option = {
-            title: { text: '前车(ID: 1) 纵向物理距离实时追踪趋势', left: 'center', textStyle: { color: '#00bcd4' } },
-            tooltip: { trigger: 'axis' },
-            xAxis: { type: 'category', data: frameIds, name: '帧率(Frame)' },
-            yAxis: { type: 'value', name: '距离 (米)', min: 0, max: 50 },
+        const gaugeOption = {
+            title: {
+                text: '实时行车安全指数',
+                left: 'center',
+                bottom: '10%',
+                textStyle: { color: '#aaa', fontSize: 11 }
+            },
             series: [{
-                name: '目标车距',
-                type: 'line',
-                data: distanceData,
-                smooth: true,
-                itemStyle: { color: '#ff9800' },
-                areaStyle: { opacity: 0.1 } // 阴影面积区域
+                type: 'gauge',
+                startAngle: 180,
+                endAngle: 0,
+                center: ['50%', '70%'],
+                radius: '95%',
+                min: 0,
+                max: 100,
+                splitNumber: 5,
+                axisLine: {
+                    lineStyle: {
+                        width: 6,
+                        color: [
+                            [0.3, '#f44336'], // 危险 (红)
+                            [0.7, '#ff9800'], // 警告 (橙)
+                            [1, '#4caf50']    // 安全 (绿)
+                        ]
+                    }
+                },
+                pointer: {
+                    icon: 'path://M12.8,0.7l12,20.1c0.6,1,0.3,2.3-0.7,2.9c-0.4,0.2-0.8,0.3-1.3,0.3h-24c-1.2,0-2.2-1-2.2-2.2c0-0.5,0.2-0.9,0.4-1.3l12-20.1C10.6-0.2,11.9-0.2,12.8,0.7z',
+                    length: '55%',
+                    width: 5,
+                    offsetCenter: [0, -5],
+                    itemStyle: { color: 'auto' }
+                },
+                axisTick: { length: 3, lineStyle: { color: 'auto', width: 1 } },
+                splitLine: { length: 6, lineStyle: { color: 'auto', width: 2 } },
+                axisLabel: { color: '#aaa', fontSize: 9, distance: 8 },
+                title: { show: false },
+                detail: {
+                    fontSize: 16,
+                    offsetCenter: [0, '20%'],
+                    valueAnimation: true,
+                    formatter: '{value}%',
+                    color: 'inherit'
+                },
+                data: [{ value: 100 }]
             }]
         };
-        myChart.setOption(option);
+        safetyGauge.setOption(gaugeOption);
+
+        // 2. 初始化车流量变动折线图
+        const volumeDom = document.getElementById('volume-chart');
+        const volumeChart = echarts.init(volumeDom, 'dark');
+        
+        let volumeFrameIds = [];
+        let volumeData = [];
+        
+        const volumeOption = {
+            title: {
+                text: '实时路段车流量趋势',
+                left: 'center',
+                textStyle: { color: '#00bcd4', fontSize: 13 }
+            },
+            grid: { left: '10%', right: '10%', top: '20%', bottom: '15%' },
+            tooltip: { trigger: 'axis' },
+            xAxis: {
+                type: 'category',
+                data: volumeFrameIds,
+                name: '帧',
+                axisLabel: { fontSize: 9 }
+            },
+            yAxis: {
+                type: 'value',
+                name: '数量 (辆)',
+                min: 0,
+                max: 10,
+                splitNumber: 5,
+                axisLabel: { fontSize: 9 }
+            },
+            series: [{
+                name: '车辆数',
+                type: 'line',
+                data: volumeData,
+                smooth: true,
+                itemStyle: { color: '#00bcd4' },
+                areaStyle: { opacity: 0.1 }
+            }]
+        };
+        volumeChart.setOption(volumeOption);
+
+        let isUserDragging = false;
+        const progressBar = document.getElementById('progress-bar');
+        
+        // 监控用户是否在拖动进度条，拖动时挂起自动更新，防止闪烁
+        progressBar.addEventListener('mousedown', () => { isUserDragging = true; });
+        progressBar.addEventListener('mouseup', () => { isUserDragging = false; });
+        progressBar.addEventListener('touchstart', () => { isUserDragging = true; });
+        progressBar.addEventListener('touchend', () => { isUserDragging = false; });
+
+        // 拖拽进度条释放时，下发 seek 请求给 Django 后端
+        progressBar.addEventListener('change', (e) => {
+            const targetFrame = parseInt(e.target.value);
+            fetch('/api/perception/seek/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ target_frame: targetFrame })
+            })
+            .then(res => res.json())
+            .then(resData => {
+                console.log("下发定位成功:", resData.message);
+            })
+            .catch(err => console.error("下发定位指令失败:", err));
+        });
+
+        // 格式化时间辅助函数 (以 30 FPS 估算视频时长)
+        function formatTime(frame, fps = 30) {
+            const totalSecs = Math.floor(frame / fps);
+            const mins = Math.floor(totalSecs / 60).toString().padStart(2, '0');
+            const secs = (totalSecs % 60).toString().padStart(2, '0');
+            return `${mins}:${secs}`;
+        }
 
         // 高频定时器：每 100 毫秒（0.1秒）向 Django 发送一次轮询请求获取最新数据
         setInterval(() => {
             fetch('/api/perception/latest/')
                 .then(response => response.json())
                 .then(data => {
-                    if (!data.objects || data.objects.length === 0) return;
+                    // 如果还未收到任何帧，保持原样
+                    if (data.frame_id === undefined) return;
 
                     const frameId = data.frame_id;
-                    const objects = data.objects;
+                    const totalFrames = data.total_frames || 0;
+                    const objects = data.objects || [];
+                    const isPaused = data.is_paused || false;
 
-                    // 1. 更新右侧文本日志框
+                    // 1. 同步进度条与控制台状态组件
+                    if (totalFrames > 0) {
+                        progressBar.disabled = false;
+                        progressBar.max = totalFrames;
+                        if (!isUserDragging) {
+                            progressBar.value = frameId;
+                        }
+                        
+                        // 更新时间显示为当前时间/总时间 (格式: MM:SS / MM:SS)
+                        const currentStr = formatTime(frameId);
+                        const totalStr = formatTime(totalFrames);
+                        document.getElementById('time-display').innerText = `${currentStr} / ${totalStr}`;
+                        
+                        // 同步播放/暂停按钮样式
+                        const playPauseBtn = document.getElementById('play-pause-btn');
+                        playPauseBtn.disabled = false;
+                        playPauseBtn.innerText = isPaused ? '▶️' : '⏸️';
+                        
+                        document.getElementById('stop-node-btn').disabled = false;
+                    }
+
+                    // 2. 更新右侧文本日志框
                     const dataBox = document.getElementById('data-box');
                     let htmlContent = `<h4>帧编号: ${frameId}</h4>`;
                     
-                    let target1Distance = null;
+                    let minDistance = Infinity;
 
-                    objects.forEach(obj => {
-                        htmlContent += `<div class="data-item">🚗 目标 ID: <span class="highlight">${obj.target_id}</span> | 相对距离: ${obj.distance.toFixed(2)} 米</div>`;
-                        // 筛选出 ID 为 1 的车用来画折线图
-                        if (obj.target_id === 1) {
-                            target1Distance = obj.distance;
-                        }
-                    });
-                    dataBox.innerHTML = htmlContent;
-
-                    // 2. 更新左侧折线图 (保证队列长度为 50 帧，多了就剔除旧数据)
-                    if (target1Distance !== null) {
-                        frameIds.push(frameId);
-                        distanceData.push(target1Distance);
-
-                        if (frameIds.length > 50) {
-                            frameIds.shift();
-                            distanceData.shift();
-                        }
-
-                        // 让图表重新渲染新点
-                        myChart.setOption({
-                            xAxis: { data: frameIds },
-                            series: [{ data: distanceData }]
+                    if (objects.length === 0) {
+                        htmlContent += `<p style="color: #888; font-size: 14px;">本帧未检测到有效车辆目标</p>`;
+                    } else {
+                        objects.forEach(obj => {
+                            htmlContent += `<div class="data-item">🚗 目标 ID: <span class="highlight">${obj.target_id}</span> | 相对距离: ${obj.distance.toFixed(2)} 米</div>`;
+                            if (obj.distance < minDistance) {
+                                minDistance = obj.distance;
+                            }
                         });
                     }
+                    dataBox.innerHTML = htmlContent;
+
+                    // 3. 计算并更新行车安全指数仪表盘
+                    let safetyValue = 100;
+                    if (minDistance !== Infinity) {
+                        if (minDistance <= 3.0) {
+                            safetyValue = 0;
+                        } else if (minDistance >= 30.0) {
+                            safetyValue = 100;
+                        } else {
+                            // 3米内危险(0%)，30米外安全(100%)，中间线性过渡
+                            safetyValue = Math.round((minDistance - 3.0) / 27.0 * 100);
+                        }
+                    }
+                    safetyGauge.setOption({
+                        series: [{ data: [{ value: safetyValue }] }]
+                    });
+
+                    // 4. 更新实时路段车流量趋势折线图
+                    volumeFrameIds.push(frameId);
+                    volumeData.push(objects.length);
+
+                    if (volumeFrameIds.length > 50) {
+                        volumeFrameIds.shift();
+                        volumeData.shift();
+                    }
+
+                    volumeChart.setOption({
+                        xAxis: { data: volumeFrameIds },
+                        series: [{ data: volumeData }]
+                    });
                 })
                 .catch(err => console.error("数据获取失败:", err));
         }, 100); // 100ms 高频刷新
+        // 监听文件选择变更以显示文件名
+        document.getElementById('video-file').addEventListener('change', function(e) {
+            const fileNameSpan = document.getElementById('file-name');
+            if (e.target.files.length > 0) {
+                fileNameSpan.innerText = e.target.files[0].name;
+                fileNameSpan.style.color = "#00bcd4";
+            } else {
+                fileNameSpan.innerText = "未选择文件（默认测试视频）";
+                fileNameSpan.style.color = "#aaa";
+            }
+        });
+
         // 监听启动按钮的点击动作
         document.getElementById('start-btn').addEventListener('click', function() {
             const statusMsg = document.getElementById('status-msg');
             const btn = document.getElementById('start-btn');
+            const fileInput = document.getElementById('video-file');
             
             // 获取用户当前选中的模型文件名
             const selectedModel = document.getElementById('model-select').value;
             
-            statusMsg.innerText = `正在向边缘节点下发配置 [${selectedModel}] ...`;
+            statusMsg.innerText = `正在传输数据并唤醒感知节点...`;
             statusMsg.style.color = "#00bcd4";
             btn.disabled = true; 
             btn.style.backgroundColor = "#555";
 
-            // 将模型名称打包成 JSON 发给 Django 后端
+            // 构建 FormData
+            const formData = new FormData();
+            formData.append('model_name', selectedModel);
+            if (fileInput.files.length > 0) {
+                formData.append('video_file', fileInput.files[0]);
+            }
+
+            // 发送 FormData 到 Django 后端
             fetch('/api/control/start/', { 
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ model_name: selectedModel })
+                body: formData
             })
             .then(response => response.json())
             .then(data => {
@@ -174,25 +382,115 @@
                     statusMsg.innerText = "✅ " + data.message;
                     statusMsg.style.color = "#4caf50";
                     
-                    // 🎯 核心修复：两秒后自动解锁按钮，允许用户再次切换模型
+                    // 🎯 显示视频流，并绑定 MJPEG 流媒体路由
+                    const streamImg = document.getElementById('video-stream');
+                    const placeholder = document.getElementById('video-placeholder');
+                    streamImg.style.display = 'block';
+                    placeholder.style.display = 'none';
+                    // 加上当前时间戳，防止浏览器缓存该流导致画面不更新
+                    streamImg.src = '/api/perception/video_feed/?t=' + new Date().getTime();
+                    
+                    // 启动成功，解锁控制条按钮
+                    document.getElementById('play-pause-btn').disabled = false;
+                    document.getElementById('stop-node-btn').disabled = false;
+                    
+                    // 两秒后自动解锁按钮，允许用户再次切换模型或视频
                     setTimeout(() => {
                         btn.disabled = false;
                         btn.style.backgroundColor = "#e91e63";
-                        btn.innerText = "🔄 切换模型并重新唤醒";
-                    }, 2000); // 延迟 2 秒解锁，既防止了高频连点，又保证了可以重复操作
+                        btn.innerText = "🔄 重新唤醒 / 热切换";
+                    }, 2000);
                     
                 } else {
                     statusMsg.innerText = "❌ " + data.message;
                     statusMsg.style.color = "#f44336";
                     btn.disabled = false;
                     btn.style.backgroundColor = "#e91e63";
+                    
+                    // 隐藏视频流，恢复占位符，锁定按钮
+                    document.getElementById('video-stream').style.display = 'none';
+                    document.getElementById('video-placeholder').style.display = 'flex';
+                    document.getElementById('video-stream').src = '';
+                    
+                    document.getElementById('play-pause-btn').disabled = true;
+                    document.getElementById('stop-node-btn').disabled = true;
                 }
             })
             .catch(err => {
                 statusMsg.innerText = "❌ 云端通信中断";
                 btn.disabled = false;
                 btn.style.backgroundColor = "#e91e63";
+                
+                // 隐藏视频流，恢复占位符，锁定按钮
+                document.getElementById('video-stream').style.display = 'none';
+                document.getElementById('video-placeholder').style.display = 'flex';
+                document.getElementById('video-stream').src = '';
+                
+                document.getElementById('play-pause-btn').disabled = true;
+                document.getElementById('stop-node-btn').disabled = true;
             });
+        });
+
+        // 点击图像画面本身触发播放/暂停切换
+        document.getElementById('video-stream').addEventListener('click', function() {
+            const playPauseBtn = document.getElementById('play-pause-btn');
+            if (!playPauseBtn.disabled) {
+                playPauseBtn.click();
+            }
+        });
+
+        // 播放/暂停按钮点击事件
+        document.getElementById('play-pause-btn').addEventListener('click', function() {
+            const btn = this;
+            fetch('/api/control/pause/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    btn.innerText = data.is_paused ? '▶️' : '⏸️';
+                    document.getElementById('status-msg').innerText = data.is_paused ? '⏸️ 算法已暂停' : '▶️ 算法正常运行中';
+                    document.getElementById('status-msg').style.color = '#00bcd4';
+                }
+            })
+            .catch(err => console.error("暂停控制失败:", err));
+        });
+
+        // 停止按钮点击事件
+        document.getElementById('stop-node-btn').addEventListener('click', function() {
+            fetch('/api/control/stop/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    // 停止视频流与占位恢复
+                    const streamImg = document.getElementById('video-stream');
+                    const placeholder = document.getElementById('video-placeholder');
+                    streamImg.style.display = 'none';
+                    placeholder.style.display = 'flex';
+                    streamImg.src = '';
+                    
+                    // 重置并禁用控制面板
+                    progressBar.disabled = true;
+                    progressBar.value = 0;
+                    document.getElementById('play-pause-btn').disabled = true;
+                    document.getElementById('play-pause-btn').innerText = '⏸️';
+                    document.getElementById('stop-node-btn').disabled = true;
+                    
+                    // 重置时间与日志提示
+                    document.getElementById('time-display').innerText = '00:00 / 00:00';
+                    document.getElementById('status-msg').innerText = '⏹️ 算法节点已完全停止。';
+                    document.getElementById('status-msg').style.color = '#888';
+                }
+            })
+            .catch(err => console.error("停止控制失败:", err));
         });
         
     </script>

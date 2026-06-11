@@ -2,6 +2,8 @@
 #include <opencv2/opencv.hpp>
 #include <opencv2/core/utils/logger.hpp> 
 #include <yaml-cpp/yaml.h>
+#include <thread>
+#include <chrono>
 
 // 引入自动驾驶核心模块
 #include "YoloDetector.h" 
@@ -38,6 +40,11 @@ int main(int argc, char** argv) {
     string model_path = config["perception"]["model_path"].as<string>();
     string video_path = config["system"]["video_source"].as<string>();
 
+    bool show_gui = false; // 默认不弹出本地 GUI 窗口
+    if (config["system"]["show_gui"]) {
+        show_gui = config["system"]["show_gui"].as<bool>();
+    }
+
     int input_w = 640;
     int input_h = 640;
     float conf_threshold = 0.25f;
@@ -68,14 +75,49 @@ int main(int argc, char** argv) {
     VideoCapture cap(video_path); 
     if (!cap.isOpened()) return -1;
 
+    // 获取视频的总帧数，用于同步前端可拖拽进度条
+    int total_frames = (int)cap.get(CAP_PROP_FRAME_COUNT);
+
     Mat frame;
-    namedWindow("Autonomous Perception", WINDOW_NORMAL);
-    resizeWindow("Autonomous Perception", 1280, 720);
+    if (show_gui) {
+        namedWindow("Autonomous Perception", WINDOW_NORMAL);
+        resizeWindow("Autonomous Perception", 1280, 720);
+    }
     TickMeter tm;
 
     int frame_count = 0; // 新增：记录当前帧编号
+    bool is_paused = false; // 初始不暂停
 
     while (true) {
+        // 🎯 暂停机制：如果检测到暂停指令，进入低占用的心跳轮询状态，直到被 unpause
+        if (is_paused) {
+            json payload;
+            payload["frame_id"] = frame_count;
+            payload["total_frames"] = total_frames;
+            payload["objects"] = json::array();
+            string json_str = payload.dump();
+            
+            if (auto res = cli.Post("/api/perception/upload/", json_str, "application/json")) {
+                if (res->status == 200) {
+                    try {
+                        auto resp_json = json::parse(res->body);
+                        if (resp_json.contains("is_paused")) {
+                            is_paused = resp_json["is_paused"].get<bool>();
+                        }
+                        if (resp_json.contains("seek_to_frame")) {
+                            int seek_to = resp_json["seek_to_frame"].get<int>();
+                            if (seek_to >= 0) {
+                                cap.set(CAP_PROP_POS_FRAMES, seek_to);
+                                frame_count = seek_to;
+                            }
+                        }
+                    } catch (const exception& e) {}
+                }
+            }
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+            continue;
+        }
+
         cap >> frame; 
         if (frame.empty()) break;
 
@@ -115,11 +157,29 @@ int main(int argc, char** argv) {
             putText(frame, label, Point(box.x, box.y - 5), FONT_HERSHEY_SIMPLEX, 0.6, Scalar(0, 0, 0), 2);
         }
 
-        // 新增：通过 HTTP POST 发送数据 (如果本帧有有效目标)
-        if (!payload["objects"].empty()) {
-            string json_str = payload.dump();
-            // 注意：此时发送请求如果失败，终端可能不报错，以保障主循环 FPS 不受影响
-            cli.Post("/api/perception/upload/", json_str, "application/json");
+        // 🎯 核心变更：每帧都向 Django 发送帧状态（包含当前帧号和总帧数），用作心跳同步，并读取下发的 seek 定位信号
+        payload["total_frames"] = total_frames;
+        string json_str = payload.dump();
+        
+        if (auto res = cli.Post("/api/perception/upload/", json_str, "application/json")) {
+            if (res->status == 200) {
+                try {
+                    auto resp_json = json::parse(res->body);
+                    if (resp_json.contains("is_paused")) {
+                        is_paused = resp_json["is_paused"].get<bool>();
+                    }
+                    if (resp_json.contains("seek_to_frame")) {
+                        int seek_to = resp_json["seek_to_frame"].get<int>();
+                        if (seek_to >= 0) {
+                            cout << "[INFO] 🎛️ 收到网页定位指令，正在跳转到帧: " << seek_to << endl;
+                            cap.set(CAP_PROP_POS_FRAMES, seek_to);
+                            frame_count = seek_to; // 同步本地帧号计数器
+                        }
+                    }
+                } catch (const exception& e) {
+                    // 解析异常无需崩溃，直接跳过
+                }
+            }
         }
 
         tm.stop();
@@ -127,10 +187,20 @@ int main(int argc, char** argv) {
         putText(frame, fps_text, Point(20, 40), FONT_HERSHEY_SIMPLEX, 1.0, Scalar(0, 0, 255), 2);
         tm.reset();
 
-        imshow("Autonomous Perception", frame);
+        // 新增：将带识别框的实时图像帧压缩并上传至 Django 视频流缓存接口
+        vector<uchar> buf;
+        imencode(".jpg", frame, buf);
+        string image_data(buf.begin(), buf.end());
+        cli.Post("/api/perception/upload_frame/", image_data, "image/jpeg");
+
+        if (show_gui) {
+            imshow("Autonomous Perception", frame);
+        }
         if (waitKey(1) == 27) break;
     }
     cap.release();
-    destroyAllWindows();
+    if (show_gui) {
+        destroyAllWindows();
+    }
     return 0;
 }
