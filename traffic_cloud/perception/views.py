@@ -53,7 +53,16 @@ def start_engine(request):
             yaml_path = r"D:\AutoDrive_System\AutoDrive_Framework\config.yaml"
             with open(yaml_path, 'r', encoding='utf-8') as f:
                 config = yaml.safe_load(f)
+            
+            # 写入模型路径
             config['perception']['model_path'] = f"D:/AutoDrive_System/AutoDrive_Framework/models/{selected_model}"
+            
+            # 根据模型静态维度自动更新 YAML 中的尺寸配置
+            if 'yolov8n' in selected_model:
+                config['perception']['input_size'] = [320, 320]
+            else:
+                config['perception']['input_size'] = [640, 640]
+                
             with open(yaml_path, 'w', encoding='utf-8') as f:
                 yaml.dump(config, f, allow_unicode=True, sort_keys=False)
 

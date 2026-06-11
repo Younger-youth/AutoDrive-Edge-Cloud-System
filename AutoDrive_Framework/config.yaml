@@ -4,9 +4,9 @@ system:
 perception:
   model_path: D:/AutoDrive_System/AutoDrive_Framework/models/yolov8s.onnx
   input_size:
-  - 320
-  - 320
-  conf_threshold: 0.4
+  - 640
+  - 640
+  conf_threshold: 0.25
   nms_threshold: 0.45
 control_nmpc:
   horizon: 20

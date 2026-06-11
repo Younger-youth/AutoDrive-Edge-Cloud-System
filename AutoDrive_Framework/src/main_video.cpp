@@ -38,8 +38,24 @@ int main(int argc, char** argv) {
     string model_path = config["perception"]["model_path"].as<string>();
     string video_path = config["system"]["video_source"].as<string>();
 
+    int input_w = 640;
+    int input_h = 640;
+    float conf_threshold = 0.25f;
+    float nms_threshold = 0.45f;
+
+    if (config["perception"]["input_size"] && config["perception"]["input_size"].IsSequence() && config["perception"]["input_size"].size() == 2) {
+        input_w = config["perception"]["input_size"][0].as<int>();
+        input_h = config["perception"]["input_size"][1].as<int>();
+    }
+    if (config["perception"]["conf_threshold"]) {
+        conf_threshold = config["perception"]["conf_threshold"].as<float>();
+    }
+    if (config["perception"]["nms_threshold"]) {
+        nms_threshold = config["perception"]["nms_threshold"].as<float>();
+    }
+
     YoloDetector detector;
-    if (!detector.init(model_path)) return -1;
+    if (!detector.init(model_path, input_w, input_h, conf_threshold, nms_threshold)) return -1;
 
     MultiTracker tracker; 
     DistanceEstimator distance_estimator;

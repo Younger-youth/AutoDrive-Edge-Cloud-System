@@ -5,9 +5,27 @@ using namespace cv;
 using namespace std;
 
 // 1. 启动引擎：加载 ONNX 模型
-bool YoloDetector::init(const string& model_path) {
+bool YoloDetector::init(const string& model_path, int input_width, int input_height, float conf_threshold, float nms_threshold) {
+    conf_thresh = conf_threshold;
+    nms_thresh = nms_threshold;
+    
+    // 🎯 核心防护：由于 ONNX 模型是静态导出的，输入尺寸必须与模型内部 DFL Reshape 层完全匹配，否则 OpenCV 会发生 Assertion 崩溃。
+    if (model_path.find("yolov8n") != string::npos) {
+        input_w = 320;
+        input_h = 320;
+    } else if (model_path.find("yolov8s") != string::npos || 
+               model_path.find("yolov8m") != string::npos || 
+               model_path.find("yolov8x") != string::npos) {
+        input_w = 640;
+        input_h = 640;
+    } else {
+        input_w = input_width;
+        input_h = input_height;
+    }
+    
     try {
         cout << "[INFO] 正在尝试加载模型: " << model_path << endl;
+        cout << "[INFO] 📐 自动适配输入尺寸: " << input_w << "x" << input_h << endl;
         net = dnn::readNetFromONNX(model_path);
         net.setPreferableBackend(dnn::DNN_BACKEND_OPENCV);
         net.setPreferableTarget(dnn::DNN_TARGET_CPU); // 未来有显卡可改为 DNN_TARGET_CUDA
@@ -49,10 +67,10 @@ vector<Rect> YoloDetector::detect(Mat& frame)  {
     float scale;
     int pad_left, pad_top;
     
-    // 【修改点】：如果想提速，把这里的 640,640 换成你的近视眼模型尺寸 320,320
-    Mat letterbox_img = letterbox(frame, Size(320, 320), scale, pad_left, pad_top);
+    // ⚡ 动态尺寸进行 Letterbox 和 Blob 转换
+    Mat letterbox_img = letterbox(frame, Size(input_w, input_h), scale, pad_left, pad_top);
 
-    Mat blob = dnn::blobFromImage(letterbox_img, 1.0 / 255.0, Size(320, 320), Scalar(), true, false);
+    Mat blob = dnn::blobFromImage(letterbox_img, 1.0 / 255.0, Size(input_w, input_h), Scalar(), true, false);
     net.setInput(blob);
 
     vector<Mat> net_outputs;
@@ -82,7 +100,7 @@ vector<Rect> YoloDetector::detect(Mat& frame)  {
             }
         }
 
-        if (max_class_score > 0.4) { // 置信度阈值
+        if (max_class_score > conf_thresh) { // 置信度阈值
             float cx = p[0], cy = p[1], w = p[2], h = p[3];
             int left = int((cx - 0.5 * w - pad_left) / scale);
             int top = int((cy - 0.5 * h - pad_top) / scale);
@@ -98,7 +116,7 @@ vector<Rect> YoloDetector::detect(Mat& frame)  {
 
     // ⚡ NMS 非极大值抑制：把重叠的废框全部过滤掉
     vector<int> indices;
-    dnn::NMSBoxes(boxes, confidences, 0.4, 0.45, indices);
+    dnn::NMSBoxes(boxes, confidences, conf_thresh, nms_thresh, indices);
     vector<Rect> final_detections; // 准备一个空车厢，用来装纯净的坐标数据
 
     for (int idx : indices) {
@@ -107,7 +125,7 @@ vector<Rect> YoloDetector::detect(Mat& frame)  {
         // 工业级过滤：COCO 数据集里 2是汽车(car), 5是公交(bus), 7是卡车(truck)
         // 我们只把车辆的坐标传给下游追踪器，如果是人、猫、狗、红绿灯，直接无视！
         if (cid == 2 || cid == 5 || cid == 7) { 
-            final_detections.push_back(boxes[idx]); // 把合格的车辆坐标装进车厢
+            final_detections.push_back(boxes[idx]); // 把合格 of 车辆坐标装进车厢
         }
     }
 
